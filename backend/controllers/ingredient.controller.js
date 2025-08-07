@@ -1,10 +1,16 @@
 import Ingredient from '../models/ingredient.model.js';
 
-// @desc    Create a new ingredient
-// @route   POST /api/ingredients
-// @access  Public
 export const createIngredient = async (req, res) => {
+    // req.body contains the text fields from the form
     const ingredientData = req.body;
+
+    // --- ADD THIS LOGIC ---
+    // If a file was uploaded, req.file will be available
+    if (req.file) {
+        // Construct the URL to the uploaded file
+        ingredientData.imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    }
+
     const newIngredient = new Ingredient(ingredientData);
 
     try {
@@ -15,9 +21,7 @@ export const createIngredient = async (req, res) => {
     }
 };
 
-// @desc    Get all ingredients
-// @route   GET /api/ingredients
-// @access  Public
+// ... (getIngredients and getIngredientById remain the same)
 export const getIngredients = async (req, res) => {
     try {
         const ingredients = await Ingredient.find().sort({ createdAt: -1 });
@@ -27,9 +31,6 @@ export const getIngredients = async (req, res) => {
     }
 };
 
-// @desc    Get a single ingredient by ID
-// @route   GET /api/ingredients/:id
-// @access  Public
 export const getIngredientById = async (req, res) => {
     const { id } = req.params;
     try {
