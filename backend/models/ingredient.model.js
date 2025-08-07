@@ -32,7 +32,7 @@ const ingredientSchema = mongoose.Schema({
     },
     importantFormulations: [{
         name: String,
-        imageUrl: String, // Placeholder for icon upload
+        imageUrl: String,
     }],
     therapeuticUses: [String],
 

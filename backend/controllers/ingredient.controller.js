@@ -20,7 +20,7 @@ export const createIngredient = async (req, res) => {
 // @access  Public
 export const getIngredients = async (req, res) => {
     try {
-        const ingredients = await Ingredient.find();
+        const ingredients = await Ingredient.find().sort({ createdAt: -1 });
         res.status(200).json(ingredients);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -39,6 +39,6 @@ export const getIngredientById = async (req, res) => {
         }
         res.status(200).json(ingredient);
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(500).json({ message: "Error retrieving ingredient", error: error.message });
     }
 };

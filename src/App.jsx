@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import IngredientsList from './pages/IngredientList';
-import AddIngredient from './pages/AddIngredient';
-import IngredientDetail from './pages/IngredientDetail';
+import Sidebar from './components/Sidebar.jsx';
+import Header from './components/Header.jsx';
+import IngredientsList from './pages/IngredientsList.jsx';
+import AddIngredient from './pages/AddIngredient.jsx';
+import IngredientDetail from './pages/IngredientDetail.jsx';
 
 function App() {
-  // Simple state-based routing instead of a library like react-router-dom
-  const [currentPage, setCurrentPage] = useState('ingredients-list'); // 'ingredients-list', 'add-ingredient', 'ingredient-detail'
+  const [currentPage, setCurrentPage] = useState('ingredients-list');
   const [selectedIngredientId, setSelectedIngredientId] = useState(null);
 
   const navigateTo = (page, id = null) => {
@@ -29,7 +28,7 @@ function App() {
 
   return (
     <div className="flex h-screen bg-gray-50 font-sans">
-      <Sidebar />
+      <Sidebar navigateTo={navigateTo} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-4 sm:p-6 lg:p-8">

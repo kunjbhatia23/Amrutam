@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Search, Plus, Upload, Download, ArrowUpDown } from 'lucide-react';
 
-// IMPORTANT: Make sure your backend server is running and accessible.
-// Replace with your actual backend URL.
 const API_URL = 'http://localhost:5001/api/ingredients';
 
 const IngredientsList = ({ navigateTo }) => {
@@ -19,7 +17,7 @@ const IngredientsList = ({ navigateTo }) => {
         setIngredients(response.data);
         setError(null);
       } catch (err) {
-        setError('Failed to fetch ingredients.');
+        setError('Failed to fetch ingredients. Is the backend server running?');
         console.error(err);
       } finally {
         setLoading(false);
